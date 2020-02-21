@@ -22,6 +22,64 @@ class Events(commands.Cog):
     #        await msg.channel.send("Zitto magrebino.")
     #        return
 
+     @commands.Cog.listener()
+     async def on_reaction_add(self, reaction, user):
+ 
+         weeb   = '👹'  #:japanese_ogre:                                                   
+         hacker = '💻'  #:computer:                                                        
+         gamer  = '🕹️   #:joystick:                                                        
+ 
+         roles_msg = await reaction.message.channel.fetch_message(680467368752840721)
+         print(roles_msg)
+ 
+         if (reaction.message.channel.id != 680100806791528452):
+             print("diocane")
+             return
+         
+         guild = user.guild
+ 
+         if reaction.emoji == hacker and reaction.message == roles_msg:
+             roleHacker = guild.get_role(680437984231030801)
+             await user.add_roles(roleHacker, reason="Clicked the get-roles button")
+             
+         if reaction.emoji == weeb  and reaction.message == roles_msg:
+             roleWeeb = guild.get_role(680437936214376455)
+             await user.add_roles(roleWeeb, reason="Clicked the get-roles button")
+ 
+         if reaction.emoji == gamer and reaction.message == roles_msg:
+             roleGamer = guild.get_role(680437915888910405)
+             await user.add_roles(roleGamer, reason="Clicked the get-roles button")
+
+     @commands.Cog.listener()
+     async def on_reaction_remove(self, reaction, user):
+ 
+         weeb   = '👹'
+         hacker = '💻'
+         gamer  = '🕹️'
+ 
+         roles_msg = await reaction.message.channel.fetch_message(680467368752840721)
+         print(roles_msg)
+ 
+         if (reaction.message.channel.id != 680100806791528452):
+             print("diocane")
+             return
+         
+         guild = user.guild
+ 
+         if reaction.emoji == hacker and reaction.message == roles_msg:
+             roleHacker = guild.get_role(680437984231030801)
+             await user.remove_roles(roleHacker, reason="Clicked the get-roles button")
+ 
+         if reaction.emoji == weeb  and reaction.message == roles_msg:
+             roleWeeb = guild.get_role(680437936214376455)
+             await user.remove_roles(roleWeeb, reason="Clicked the get-roles button")
+ 
+         if reaction.emoji == gamer and reaction.message == roles_msg:
+             roleGamer = guild.get_role(680437915888910405)
+             await user.remove_roles(roleGamer, reason="Clicked the get-roles button")
+ 
+
+
 
 def setup(bot):
     bot.add_cog(Events(bot))
